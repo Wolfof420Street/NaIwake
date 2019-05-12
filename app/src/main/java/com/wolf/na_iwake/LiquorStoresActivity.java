@@ -22,6 +22,7 @@ public class LiquorStoresActivity extends AppCompatActivity {
             "Charlie's", "Mwendas", "Switch", "Blend",
             "Edge", "Maggie's", "Red Velvet",
             "Chuom", "Whiskey Pitt"};
+    private String[] drinks = new String[] {"Beer", "Vodka", "Gin", "Beer", "Rum", "Wine", "Brandy", "Scotch", "Cognac", "Tequilla", "Barley", "Cuban", "Bar Food", "Sports Bar", "Vermouth", "Alcohol" };
 
 
     @Override

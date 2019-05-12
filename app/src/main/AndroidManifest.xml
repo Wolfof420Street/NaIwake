@@ -9,8 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LiquorStoresActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".LiquorStoresActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".MainActivity"
+            android:theme="@style/NoActionBarTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wolf.na_iwake.MainActivity">
+            </meta-data>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
