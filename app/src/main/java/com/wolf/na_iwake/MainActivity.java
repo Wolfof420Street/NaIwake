@@ -11,24 +11,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
-    private Button mFindLiquorStoresButton;
-    private EditText mLocationEditText;
-    private TextView mAppNameTextView;
-
+    @BindView(R.id.FindLiquorStoresButton) Button mFindLiquorStoresButton;
+    @BindView(R.id.locationEditText) EditText mLocationEditText;
+    @BindView(R.id.NaIwaketextView) TextView mAppNameTextView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mAppNameTextView = (TextView) findViewById(R.id.textView);
+        ButterKnife.bind(this);
+
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/FFF_Tusj.ttf");
         mAppNameTextView.setTypeface(font);
-        mLocationEditText = (EditText) findViewById(R.id.locationEditText);
-
-        mFindLiquorStoresButton = (Button) findViewById(R.id.FindLiquorStoresButton);
 
         mFindLiquorStoresButton.setOnClickListener(new View.OnClickListener() {
             @Override
