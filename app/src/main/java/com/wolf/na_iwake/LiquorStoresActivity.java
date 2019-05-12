@@ -10,22 +10,25 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class LiquorStoresActivity extends AppCompatActivity {
-    private TextView mLocationTextView;
+    @BindView(R.id.locationTextView) TextView mLocationTextView;
+    @BindView(R.id.listView) ListView mListView;
+
     private String[] liquorStores = new String[] {"Brew Bistro", "Waves",
             "Tribeka", "1824", "Milan", "Valhalla",
             "Charlie's", "Mwendas", "Switch", "Blend",
             "Edge", "Maggie's", "Red Velvet",
             "Chuom", "Whiskey Pitt"};
-    private ListView mListView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liquor_stores);
-        mListView = (ListView) findViewById(R.id.listView);
-        mLocationTextView = (TextView) findViewById(R.id.locationTextView);
-
+        ButterKnife.bind(this);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, liquorStores);
         mListView.setAdapter(adapter);
 
