@@ -14,11 +14,14 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = MainActivity.class.getSimpleName();
-    @BindView(R.id.FindLiquorStoresButton) Button mFindLiquorStoresButton;
-    @BindView(R.id.locationEditText) EditText mLocationEditText;
-    @BindView(R.id.NaIwaketextView) TextView mAppNameTextView;
+    @BindView(R.id.FindLiquorStoresButton)
+    Button mFindLiquorStoresButton;
+    @BindView(R.id.locationEditText)
+    EditText mLocationEditText;
+    @BindView(R.id.NaIwaketextView)
+    TextView mAppNameTextView;
 
 
     @Override
@@ -27,18 +30,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/FFF_Tusj.ttf");
+        Typeface font = Typeface.createFromAsset(getAssets(), "Fonts/background.ttf");
         mAppNameTextView.setTypeface(font);
 
-        mFindLiquorStoresButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LiquorStoresActivity.class);
-                String location = mLocationEditText.getText().toString();
-                intent.putExtra("location", location);
-                startActivity(intent);
-            }
-        });
+        mFindLiquorStoresButton.setOnClickListener(this);
 
     }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mFindLiquorStoresButton) {
+            Intent intent = new Intent(MainActivity.this, LiquorStoresActivity.class);
+            String location = mLocationEditText.getText().toString();
+            intent.putExtra("location", location);
+            startActivity(intent);
+        }
+    }
 }
+
+
