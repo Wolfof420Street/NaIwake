@@ -11,8 +11,8 @@ public class LiquorStoreArrayAdapter extends ArrayAdapter {
     public LiquorStoreArrayAdapter(Context mContext, int resource,  String [] mLiquorStores, String [] mDrinks) {
         super(mContext, resource);
         this.mContext = mContext;
-        this.mDrinks = mDrinks;
         this.mLiquorStores = mLiquorStores;
+        this.mDrinks = mDrinks;
     }
     @Override
     public Object getItem(int position) {

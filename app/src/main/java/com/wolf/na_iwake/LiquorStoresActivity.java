@@ -30,7 +30,10 @@ public class LiquorStoresActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liquor_stores);
         ButterKnife.bind(this);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, liquorStores);
+        Intent intent = getIntent();
+        String location = intent.getStringExtra("location");
+
+        LiquorStoreArrayAdapter adapter = new LiquorStoreArrayAdapter(this, android.R.layout.simple_list_item_1, liquorStores, drinks);
         mListView.setAdapter(adapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -42,8 +45,9 @@ public class LiquorStoresActivity extends AppCompatActivity {
         });
 
 
-        Intent intent = getIntent();
-        String location = intent.getStringExtra("location");
+
+
+
         mLocationTextView.setText("Here are all the liquor stores near: " + location);
     }
 }
