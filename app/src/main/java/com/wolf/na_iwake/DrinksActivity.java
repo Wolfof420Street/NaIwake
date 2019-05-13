@@ -28,6 +28,7 @@ public class DrinksActivity extends AppCompatActivity {
         DrinksArrayAdapter adapter = new DrinksArrayAdapter(this, android.R.layout.simple_list_item_1, variety, prices);
         mDrinksListView.setAdapter(adapter);
 
+        textView.setText("Here are the alcohols offered at:" + Tempholder);
 
         }
     }
