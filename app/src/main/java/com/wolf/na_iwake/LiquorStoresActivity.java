@@ -40,7 +40,10 @@ public class                                                                    
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String liquorStore = ((TextView)view).getText().toString();
-                Toast.makeText(LiquorStoresActivity.this, liquorStore, Toast.LENGTH_LONG).show();
+                Intent intent1 = new Intent(LiquorStoresActivity.this, DrinksActivity.class);
+                intent1.putExtra("Listviewclickvalue", liquorStore);
+                startActivity(intent1);
+                /*Toast.makeText(LiquorStoresActivity.this, liquorStore, Toast.LENGTH_LONG).show();*/
             }
         });
 

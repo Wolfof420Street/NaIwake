@@ -4,8 +4,15 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/drinksTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Drinks in the Liquor Store" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/drinksListView"
+        android:layout_below="@+id/drinksTextView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
