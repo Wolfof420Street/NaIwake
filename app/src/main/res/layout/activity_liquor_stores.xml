@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.wolf.na_iwake.LiquorStoresActivity">
     <ImageView
-        android:background="@drawable/Liquor-store"
+        android:background="@drawable/liquor_store"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"/>
 
