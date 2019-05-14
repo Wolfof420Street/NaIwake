@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.wolf.na_iwake.LiquorStoresActivity">
-    <ImageView
+    <!--<ImageView
         android:background="@drawable/liquor_store"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>
+        android:layout_height="fill_parent"/>-->
 
     <TextView
         android:layout_width="wrap_content"

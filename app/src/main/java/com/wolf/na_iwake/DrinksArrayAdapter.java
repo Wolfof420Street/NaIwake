@@ -22,4 +22,8 @@ public class DrinksArrayAdapter extends ArrayAdapter {
     String price = mPrices [position];
     return String.format("%s \nPrice: %s", variety, price);
     }
+    @Override
+    public  int getCount () {
+        return mVariety.length;
+    }
 }

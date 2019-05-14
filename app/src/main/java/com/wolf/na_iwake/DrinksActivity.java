@@ -1,9 +1,13 @@
 package com.wolf.na_iwake;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,11 +26,21 @@ public class DrinksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_drinks);
         ButterKnife.bind(this);
 
+        DrinksArrayAdapter adapter = new DrinksArrayAdapter(this, android.R.layout.simple_list_item_1, variety, prices);
+        mDrinksListView.setAdapter(adapter);
+
         String Tempholder = getIntent().getStringExtra("Listviewclickvalue" );
         textView.setText(Tempholder);
 
-        DrinksArrayAdapter adapter = new DrinksArrayAdapter(this, android.R.layout.simple_list_item_1, variety, prices);
-        mDrinksListView.setAdapter(adapter);
+
+
+        mDrinksListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String drinks = ((TextView)view).getText().toString();
+                Toast.makeText(DrinksActivity.this, drinks, Toast.LENGTH_LONG);
+            }
+        });
 
         textView.setText("Here are the alcohols offered at:" + Tempholder);
 
