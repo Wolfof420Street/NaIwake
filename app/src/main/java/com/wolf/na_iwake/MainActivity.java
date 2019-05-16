@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        Intent intent = getIntent();
 
         Typeface font = Typeface.createFromAsset(getAssets(), "Fonts/background.ttf");
         mAppNameTextView.setTypeface(font);

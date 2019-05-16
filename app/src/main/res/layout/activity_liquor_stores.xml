@@ -5,17 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.wolf.na_iwake.LiquorStoresActivity">
     <!--<ImageView
-        android:background="@drawable/liquor_store"
+        android:background="@drawable/logo"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>-->
-
+        android:layout_height="fill_parent"/>
+-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Liquor Stores near "
         android:id="@+id/locationTextView"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#ff0000"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

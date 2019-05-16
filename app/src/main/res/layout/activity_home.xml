@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:background="@drawable/background"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
+
+    <TextView
+        android:id="@+id/hometextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Na Iwake" />
+
+    <Button
+        android:id="@+id/popularDrinksbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="54dp"
+        android:text="View Popular Drinks" />
+
+    <Button
+        android:id="@+id/searchStoresbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/popularDrinksbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="217dp"
+        android:layout_marginBottom="55dp"
+        android:text="Look For Drinks" />
+</RelativeLayout>

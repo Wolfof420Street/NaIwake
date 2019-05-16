@@ -9,14 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DrinksActivity"></activity>
+        <activity android:name=".PopularDrinksActivity"></activity>
+        <activity android:name=".HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DrinksActivity" />
         <activity android:name=".LiquorStoresActivity" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/NoActionBarTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.wolf.na_iwake.MainActivity"></meta-data>
+                android:value="com.wolf.na_iwake.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
