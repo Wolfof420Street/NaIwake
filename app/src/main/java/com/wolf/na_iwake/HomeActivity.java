@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -17,6 +18,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.searchStoresbutton) Button msearchStoresButton;
     @BindView(R.id.hometextView)
     TextView mHomeTextView;
+    @BindView(R.id.editCocktailText)
+    EditText mCocktailEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         public void onClick (View v) {
             if (v == mpopularDrinksButton) {
             Intent intent = new Intent(HomeActivity.this, CocktailsActivity.class);
+            String name = mCocktailEditText.getText().toString();
+            intent.putExtra("Cocktail", name);
             startActivity(intent);
             }
             if (v == msearchStoresButton) {

@@ -29,4 +29,13 @@
         android:layout_marginLeft="217dp"
         android:layout_marginBottom="55dp"
         android:text="Look For Drinks" />
+
+    <EditText
+        android:id="@+id/editCocktailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Alcoholic"
+        android:visibility="invisible"/>
 </RelativeLayout>
