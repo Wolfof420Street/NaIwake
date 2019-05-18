@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +30,8 @@ public class CocktailsActivity extends AppCompatActivity  {
     @BindView(R.id.findCocktailsButton)
     Button mCocktailsButton;
     private String [] cocktails = new String[] {""};
+
+    public ArrayList <Cocktail> mCocktails = new ArrayList<>();
 
 
 
@@ -63,7 +66,10 @@ public class CocktailsActivity extends AppCompatActivity  {
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     String jsonData = response.body().string();
-                    Log.v(TAG, jsonData);
+                    if (response.isSuccessful()) {
+                        Log.v(TAG, jsonData);
+                        mCocktails = cocktailService.processResults(response);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

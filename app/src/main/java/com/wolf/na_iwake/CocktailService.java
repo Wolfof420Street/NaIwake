@@ -1,10 +1,19 @@
 package com.wolf.na_iwake;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 
 public class CocktailService {
     public static void findCocktails(String name, Callback callback) {
@@ -23,5 +32,27 @@ public class CocktailService {
         Call call = client.newCall(request);
         call.enqueue(callback);
     }
-
+    public ArrayList<Cocktail> processResults(Response response) {
+        ArrayList<Cocktail> cocktails = new ArrayList<>();
+        try {
+            String xmlData = response.body().string();
+            JSONObject cocktailJSON = new JSONObject(xmlData);
+            JSONArray drinksJSON = cocktailJSON.getJSONArray("drinks");
+            if (response.isSuccessful()) {
+                for (int i=0; i < drinksJSON.length(); i++) {
+                    JSONObject cocktailsJSON = drinksJSON.getJSONObject(i);
+                    String strDrink = cocktailsJSON.getString("strDrink");
+                    String strDrinkThumb = cocktailsJSON.getString("strDrinkThumb");
+                }
+                Cocktail cocktail = new Cocktail("strDrink", "strDrinkThumb" );
+                cocktails.add(cocktail);
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return cocktails;
+    }
 }
+
