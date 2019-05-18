@@ -3,6 +3,7 @@ package com.wolf.na_iwake;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.XML;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -36,16 +37,17 @@ public class CocktailService {
         ArrayList<Cocktail> cocktails = new ArrayList<>();
         try {
             String xmlData = response.body().string();
-            JSONObject cocktailJSON = new JSONObject(xmlData);
+            JSONObject cocktailJSON = XML.toJSONObject(xmlData);
             JSONArray drinksJSON = cocktailJSON.getJSONArray("drinks");
             if (response.isSuccessful()) {
-                for (int i=0; i < drinksJSON.length(); i++) {
+                for (int i = 0; i < drinksJSON.length(); i++) {
                     JSONObject cocktailsJSON = drinksJSON.getJSONObject(i);
-                    String strDrink = cocktailsJSON.getString("strDrink");
-                    String strDrinkThumb = cocktailsJSON.getString("strDrinkThumb");
+                    String drink = cocktailsJSON.getString("strDrink");
+                    String drinkThumb = cocktailsJSON.getString("strDrinkThumb");
+
+                    Cocktail cocktail = new Cocktail(drink, drinkThumb);
+                    cocktails.add(cocktail);
                 }
-                Cocktail cocktail = new Cocktail("strDrink", "strDrinkThumb" );
-                cocktails.add(cocktail);
             }
         }catch (IOException e) {
             e.printStackTrace();

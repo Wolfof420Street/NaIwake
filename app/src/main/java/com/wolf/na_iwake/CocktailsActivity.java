@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ListView;
@@ -21,19 +23,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 
-public class CocktailsActivity extends AppCompatActivity  {
+public class CocktailsActivity extends AppCompatActivity {
     private static final String TAG = CocktailsActivity.class.getSimpleName();
-    @BindView(R.id.cocktailsTextView)
-    TextView mCocktailsTextView;
-    @BindView(R.id.cocktailsListView)
-    ListView mCocktailsListView;
-    @BindView(R.id.findCocktailsButton)
-    Button mCocktailsButton;
-    private String [] cocktails = new String[] {""};
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
 
-    public ArrayList <Cocktail> mCocktails = new ArrayList<>();
+  /*  @BindView(R.id.cocktailsListView)
+    ListView mCocktailsListView;*/
+  private  CockailListAdapter mAdapter;
+    /*@BindView(R.id.findCocktailsButton)
+    Button mCocktailsButton;*/
 
-
+    public ArrayList<Cocktail> cocktails = new ArrayList<>();
 
 
     @Override
@@ -42,39 +43,53 @@ public class CocktailsActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_cocktails);
         ButterKnife.bind(this);
 
-
-        Typeface font = Typeface.createFromAsset(getAssets(), "Fonts/background.ttf");
-        mCocktailsTextView.setTypeface(font);
-
         Intent intent = getIntent();
         String name = intent.getStringExtra("Cocktail");
 
-        CocktailsArrayAdapter adapter  = new CocktailsArrayAdapter(this, android.R.layout.simple_list_item_1, cocktails);
-        mCocktailsListView.setAdapter(adapter);
+        /*CocktailsArrayAdapter adapter  = new CocktailsArrayAdapter(this, android.R.layout.simple_list_item_1, cocktails);
+        mCocktailsListView.setAdapter(adapter);*/
 
-        mCocktailsTextView.setText("Here is The List of Cocktails" );
         getCocktails(name);
     }
-    private void getCocktails (String name) {
+
+    private void getCocktails(String name) {
         final CocktailService cocktailService = new CocktailService();
-        cocktailService.findCocktails(name, new Callback () {
+        cocktailService.findCocktails(name, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
             }
+
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    if (response.isSuccessful()) {
-                        Log.v(TAG, jsonData);
-                        mCocktails = cocktailService.processResults(response);
+
+                cocktails = cocktailService.processResults(response);
+
+                CocktailsActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter = new CockailListAdapter(getApplicationContext(), cocktails);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(CocktailsActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
+
+                        String[] cocktailNames = new String[cocktails.size()];
+                        for (int i = 0; i < cocktailNames.length; i++) {
+                            cocktailNames[i] = cocktails.get(i).getDrink();
+                        }
+                       /* ArrayAdapter adapter = new ArrayAdapter(CocktailsActivity.this, android.R.layout.simple_list_item_1, cocktailNames);
+                        mCocktailsListView.setAdapter(adapter);*/
+                        for (Cocktail cocktail : cocktails) {
+                            Log.d(TAG, "Drink" + cocktail.getDrink());
+                            Log.d(TAG, "Image" + cocktail.getDrinkThumb());
+                        }
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                });
             }
         });
-
     }
 }
+
+
+
