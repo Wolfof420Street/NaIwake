@@ -1,4 +1,4 @@
-package com.wolf.na_iwake;
+package com.wolf.na_iwake.models;
 
 public class Cocktail {
     private String mDrink;

@@ -1,4 +1,4 @@
-package com.wolf.na_iwake;
+package com.wolf.na_iwake.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.wolf.na_iwake.R;
+import com.wolf.na_iwake.models.Cocktail;
 
 import java.util.ArrayList;
 

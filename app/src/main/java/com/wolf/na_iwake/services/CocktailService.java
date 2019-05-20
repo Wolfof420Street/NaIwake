@@ -1,4 +1,7 @@
-package com.wolf.na_iwake;
+package com.wolf.na_iwake.services;
+
+import com.wolf.na_iwake.models.Cocktail;
+import com.wolf.na_iwake.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -6,7 +9,6 @@ import org.json.JSONObject;
 import org.json.XML;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import okhttp3.Call;
@@ -37,7 +39,7 @@ public class CocktailService {
         ArrayList<Cocktail> cocktails = new ArrayList<>();
         try {
             String xmlData = response.body().string();
-            JSONObject cocktailJSON = XML.toJSONObject(xmlData);
+            JSONObject cocktailJSON = new JSONObject(xmlData);
             JSONArray drinksJSON = cocktailJSON.getJSONArray("drinks");
             if (response.isSuccessful()) {
                 for (int i = 0; i < drinksJSON.length(); i++) {

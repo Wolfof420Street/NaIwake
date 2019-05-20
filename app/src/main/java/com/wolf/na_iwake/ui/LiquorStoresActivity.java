@@ -1,14 +1,15 @@
-package com.wolf.na_iwake;
+package com.wolf.na_iwake.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.wolf.na_iwake.R;
+import com.wolf.na_iwake.adapters.DrinksArrayAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +34,7 @@ public class                                                                    
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
 
-        LiquorStoreArrayAdapter adapter = new LiquorStoreArrayAdapter(this, android.R.layout.simple_list_item_1, liquorStores, drinks);
+        DrinksArrayAdapter.LiquorStoreArrayAdapter adapter = new DrinksArrayAdapter.LiquorStoreArrayAdapter(this, android.R.layout.simple_list_item_1, liquorStores, drinks);
         mListView.setAdapter(adapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

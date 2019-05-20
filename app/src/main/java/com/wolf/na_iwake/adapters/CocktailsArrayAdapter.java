@@ -1,4 +1,4 @@
-package com.wolf.na_iwake;
+package com.wolf.na_iwake.adapters;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;

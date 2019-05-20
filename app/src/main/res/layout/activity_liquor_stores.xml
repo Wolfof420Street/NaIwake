@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.wolf.na_iwake.LiquorStoresActivity">
+    tools:context="com.wolf.na_iwake.ui.LiquorStoresActivity">
     <!--<ImageView
         android:background="@drawable/logo"
         android:layout_width="fill_parent"
