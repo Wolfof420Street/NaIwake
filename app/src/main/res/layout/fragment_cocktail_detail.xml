@@ -5,10 +5,114 @@
     android:layout_height="match_parent"
     tools:context=".ui.CocktailDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/colorPrimary">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:id="@+id/cocktailImageView"
+        android:src="@drawable/background"
+        android:scaleType="centerCrop" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingTop="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp">
+
+
+    <!-- TODO: Update blank fragment layout -->
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cocktail Name"
+        android:id="@+id/cocktailDetailNameTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.5/5"
+            android:id="@+id/ingredientsTextView"
+            android:layout_alignTop="@+id/cocktailDetailNameTextView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/saveCocktailButton"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp"
+        android:paddingRight="30dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View on CocktailDB"
+        android:id="@+id/websiteTextView"
+        android:drawableLeft="@drawable/baseline_exit_to_app_24"
+        android:drawablePadding="4dp"
+        android:textColor="@color/colorTextIcons"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp"
+        android:gravity="center" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Glass"
+            android:id="@+id/glassTextView"
+            android:drawableLeft="@drawable/baseline_local_drink_24"
+            android:drawablePadding="4dp"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add water"
+            android:id="@+id/instructionsTextView"
+            android:drawableLeft="@drawable/baseline_local_drink_24"
+            android:drawablePadding="4dp"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"/>
+
+
+    </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Cocktail"
+            android:id="@+id/saveCocktailButton"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="15sp" />
+    </RelativeLayout>
+    </LinearLayout>
+
 
 </FrameLayout>

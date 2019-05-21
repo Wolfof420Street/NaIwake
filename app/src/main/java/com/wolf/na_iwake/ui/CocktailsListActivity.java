@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.wolf.na_iwake.adapters.CockailListAdapter;
+import com.wolf.na_iwake.adapters.CocktailListAdapter;
 import com.wolf.na_iwake.R;
 import com.wolf.na_iwake.models.Cocktail;
 import com.wolf.na_iwake.services.CocktailService;
@@ -29,7 +29,7 @@ public class CocktailsListActivity extends AppCompatActivity {
 
   /*  @BindView(R.id.cocktailsListView)
     ListView mCocktailsListView;*/
-  private CockailListAdapter mAdapter;
+  private CocktailListAdapter mAdapter;
     /*@BindView(R.id.findCocktailsButton)
     Button mCocktailsButton;*/
 
@@ -67,7 +67,7 @@ public class CocktailsListActivity extends AppCompatActivity {
                 CocktailsListActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter = new CockailListAdapter(getApplicationContext(), cocktails);
+                        mAdapter = new CocktailListAdapter(getApplicationContext(), cocktails);
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(CocktailsListActivity.this);
                         mRecyclerView.setLayoutManager(layoutManager);
