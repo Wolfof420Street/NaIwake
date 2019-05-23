@@ -6,6 +6,7 @@ import org.parceler.Parcel;
 public class Cocktail {
     private String mDrink;
     private String mDrinkThumb;
+    private String mWebsite;
 
 
     public Cocktail () {}
@@ -21,7 +22,7 @@ public class Cocktail {
     public String getDrinkThumb () {
         return mDrinkThumb;
     }
-
+    public String getWebsite () { return mWebsite;}
     }
 
 

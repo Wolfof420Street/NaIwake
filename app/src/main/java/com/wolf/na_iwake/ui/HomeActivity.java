@@ -22,6 +22,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     TextView mHomeTextView;
     @BindView(R.id.editCocktailText)
     EditText mCocktailEditText;
+    @BindView(R.id.chatRoomButton) Button mChatRoomButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         mpopularDrinksButton.setOnClickListener(this);
         msearchStoresButton.setOnClickListener(this);
+        mChatRoomButton.setOnClickListener(this);
 
     }
         @Override
@@ -50,6 +52,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             if (v == msearchStoresButton) {
             Intent intent = new Intent(HomeActivity.this, MainActivity.class);
             startActivity(intent);
+            }
+            if (v == mChatRoomButton) {
+                Intent intent = new Intent(HomeActivity.this, ChatRoomActivity.class);
+                startActivity(intent);
             }
         }
     }

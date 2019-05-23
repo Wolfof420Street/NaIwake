@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1063961905401",
+    "firebase_url": "https://na-iwake-1557913784037.firebaseio.com",
+    "project_id": "na-iwake-1557913784037",
+    "storage_bucket": "na-iwake-1557913784037.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063961905401:android:3eceb36c60c77731",
+        "android_client_info": {
+          "package_name": "com.wolf.na_iwake"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063961905401-9ndb0u77s2kmllrkcruj15kll0adj3sr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wolf.na_iwake",
+            "certificate_hash": "897d14a530b60bc8dded7f14f1b4e69af85d222d"
+          }
+        },
+        {
+          "client_id": "1063961905401-2f36hp7142vbkpg3da23ab361jndj49d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiptJC08PPu70jX8TUq0_Rd-_yBB5Q3Rg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063961905401-2f36hp7142vbkpg3da23ab361jndj49d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

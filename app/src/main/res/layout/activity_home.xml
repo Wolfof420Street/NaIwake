@@ -30,6 +30,16 @@
         android:layout_marginBottom="55dp"
         android:text="Look For Drinks" />
 
+    <Button
+        android:id="@+id/chatRoomButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/searchStoresbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="110dp"
+        android:layout_centerHorizontal="true"
+        android:text="Chatroom" />
+
     <EditText
         android:id="@+id/editCocktailText"
         android:layout_width="wrap_content"
