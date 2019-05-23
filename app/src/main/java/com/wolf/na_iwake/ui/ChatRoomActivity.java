@@ -1,5 +1,6 @@
 package com.wolf.na_iwake.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -46,14 +47,17 @@ public class ChatRoomActivity extends AppCompatActivity {
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
     public static final int RC_SIGN_IN = 1;
 
-    @BindView(R.id.messageListView) ListView mMessageListView;
-    @BindView(R.id.progressBar) ProgressBar mProgressBar;
-    @BindView(R.id.photoPickerButton) ImageButton mPhotoPickerButton;
-    @BindView(R.id.messageEditText) EditText  mMessageEditText;
-    @BindView(R.id.sendButton) Button  mSendButton;
-   private MessageAdapter mMessageAdapter;
-
-
+    @BindView(R.id.messageListView)
+    ListView mMessageListView;
+    @BindView(R.id.progressBar)
+    ProgressBar mProgressBar;
+    @BindView(R.id.photoPickerButton)
+    ImageButton mPhotoPickerButton;
+    @BindView(R.id.messageEditText)
+    EditText mMessageEditText;
+    @BindView(R.id.sendButton)
+    Button mSendButton;
+    private MessageAdapter mMessageAdapter;
 
 
     private String mUsername;
@@ -85,7 +89,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: Fire an intent to show an image picker
-
 
 
             }
@@ -123,41 +126,16 @@ public class ChatRoomActivity extends AppCompatActivity {
                 mMessageEditText.setText("");
             }
         });
-        mChildEventListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                FriendlyMessage friendlyMessage = dataSnapshot.getValue(FriendlyMessage.class);
-                mMessageAdapter.add(friendlyMessage);
-            }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-        mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Toast.makeText(ChatRoomActivity.this, "Welcome to tthe Chatroom, Na iwake!", Toast.LENGTH_SHORT).show();
-                }else {
+                    onSignedInInitialize(user.getDisplayName());
+                    /*Toast.makeText(ChatRoomActivity.this, "Welcome to tthe Chatroom, Na iwake!", Toast.LENGTH_SHORT).show();*/
+                } else {
+                    onSignedOutCleanUp();
                     startActivityForResult(
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()
@@ -185,18 +163,99 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.sign_out_menu:
+                AuthUI.getInstance().signOut(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mFireBaseAuth.removeAuthStateListener(mAuthStateListener);
+        if (mChildEventListener != null) {
+            mMessagesDatabaseReference.removeEventListener(mChildEventListener);
+        }
+        detachDataBaseListener();
+        mMessageAdapter.clear();
     }
     @Override
-    protected  void onPause () {
-    super.onPause();
-    mFireBaseAuth.removeAuthStateListener(mAuthStateListener);
+    public void onActivityResult (int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(this, "signed in!", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "Sign In Cancelled", Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        }
+
     }
+
     @Override
-    protected void onResume () {
+    protected void onResume() {
         super.onResume();
         mFireBaseAuth.addAuthStateListener(mAuthStateListener);
 
     }
+
+    private void onSignedInInitialize(String username) {
+        mUsername = username;
+        attachDataBaseReadListener();
+
+
     }
+
+    private void onSignedOutCleanUp() {
+        mUsername = ANONYMOUS;
+        mMessageAdapter.clear();
+        detachDataBaseListener();
+
+    }
+
+    private void attachDataBaseReadListener() {
+        if (mChildEventListener == null) {
+            mChildEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    FriendlyMessage friendlyMessage = dataSnapshot.getValue(FriendlyMessage.class);
+                    mMessageAdapter.add(friendlyMessage);
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            };
+            mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
+        }
+    }
+        private void detachDataBaseListener () {
+            if (mChildEventListener != null) {
+                mMessagesDatabaseReference.removeEventListener(mChildEventListener);
+                mChildEventListener = null;
+            }
+        }
+    }
+
 
