@@ -3,11 +3,16 @@ package com.wolf.na_iwake.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.wolf.na_iwake.Constants;
 import com.wolf.na_iwake.adapters.CocktailListAdapter;
@@ -26,15 +31,16 @@ import okhttp3.Response;
 
 
 public class CocktailsListActivity extends AppCompatActivity {
-    /*private SharedPreferences mSharedPreferences;
-    private String mRecentCocktails;*/
+    private SharedPreferences mSharedPreferences;
+    /* private String mRecentCocktails;*/
+    private SharedPreferences.Editor mEditor;
     private static final String TAG = CocktailsListActivity.class.getSimpleName();
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
-  /*  @BindView(R.id.cocktailsListView)
-    ListView mCocktailsListView;*/
-  private CocktailListAdapter mAdapter;
+    /*  @BindView(R.id.cocktailsListView)
+      ListView mCocktailsListView;*/
+    private CocktailListAdapter mAdapter;
     /*@BindView(R.id.findCocktailsButton)
     Button mCocktailsButton;*/
 
@@ -59,6 +65,40 @@ public class CocktailsListActivity extends AppCompatActivity {
         mCocktailsListView.setAdapter(adapter);*/
 
         getCocktails(name);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        ButterKnife.bind(this);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
+
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                addToSharedPreferences(query);
+                getCocktails(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     private void getCocktails(String name) {
@@ -97,6 +137,9 @@ public class CocktailsListActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+    public void addToSharedPreferences (String name) {
+        mEditor.putString(Constants.PREFERENCES_DRINK_KEY, name).apply();
     }
 }
 
