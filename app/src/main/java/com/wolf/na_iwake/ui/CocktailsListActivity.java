@@ -1,12 +1,15 @@
 package com.wolf.na_iwake.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.wolf.na_iwake.Constants;
 import com.wolf.na_iwake.adapters.CocktailListAdapter;
 import com.wolf.na_iwake.R;
 import com.wolf.na_iwake.models.Cocktail;
@@ -23,6 +26,8 @@ import okhttp3.Response;
 
 
 public class CocktailsListActivity extends AppCompatActivity {
+    private SharedPreferences mSharedPreferences;
+    private String mRecentCocktails;
     private static final String TAG = CocktailsListActivity.class.getSimpleName();
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -41,6 +46,11 @@ public class CocktailsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cocktails);
         ButterKnife.bind(this);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentCocktails = mSharedPreferences.getString(Constants.PREFERENCES_DRINK_KEY, null);
+        if (mRecentCocktails != null ) {
+            getCocktails(mRecentCocktails);
+        }
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("Cocktail");

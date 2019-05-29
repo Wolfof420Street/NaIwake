@@ -9,10 +9,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+import com.wolf.na_iwake.Constants;
 import com.wolf.na_iwake.R;
 import com.wolf.na_iwake.models.Cocktail;
 
@@ -38,6 +43,8 @@ public class CocktailDetailFragment extends Fragment implements View.OnClickList
     TextView mIngredientsLabel;
     @BindView(R.id.instructionsTextView)
     TextView mInstructionsLabel;
+    @BindView(R.id.saveCocktailButton)
+    Button mSaveCocktailButton;
 
     private Cocktail mCocktail;
 
@@ -68,6 +75,8 @@ public class CocktailDetailFragment extends Fragment implements View.OnClickList
 
         mWebsiteLabel.setOnClickListener(this);
 
+        mSaveCocktailButton.setOnClickListener(this);
+
 
         return view;
     }
@@ -81,6 +90,13 @@ public class CocktailDetailFragment extends Fragment implements View.OnClickList
                     webpage);
             startActivity(webIntent);
         }
-
+        if (v == mSaveCocktailButton) {
+            DatabaseReference cocktailRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_COCKTAILD);
+            cocktailRef.push().setValue(mCocktail);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+        }
     }
+
 }

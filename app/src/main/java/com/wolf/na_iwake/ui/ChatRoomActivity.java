@@ -147,7 +147,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     onSignedInInitialize(user.getDisplayName());
-                    /*Toast.makeText(ChatRoomActivity.this, "Welcome to tthe Chatroom, Na iwake!", Toast.LENGTH_SHORT).show();*/
+                    Toast.makeText(ChatRoomActivity.this, "Welcome to the Chatroom, Na iwake!", Toast.LENGTH_SHORT).show();
                 } else {
                     onSignedOutCleanUp();
                     startActivityForResult(
