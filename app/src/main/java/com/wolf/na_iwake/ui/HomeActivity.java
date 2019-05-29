@@ -36,7 +36,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     @BindView(R.id.popularDrinksbutton) Button mpopularDrinksButton;
     @BindView(R.id.searchStoresbutton) Button msearchStoresButton;
-    @BindView(R.id.hometextView)
+    @BindView(R.id.textView)
     TextView mHomeTextView;
     @BindView(R.id.editCocktailText)
     EditText mCocktailEditText;

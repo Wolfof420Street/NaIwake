@@ -7,19 +7,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/background" />
 
-    <TextView
-        android:id="@+id/hometextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="602dp"
-        android:text="Na Iwake"
-        android:textSize="69dp"
-        android:textColor="@color/common_google_signin_btn_text_light"/>
+
 
     <Button
         android:id="@+id/popularDrinksbutton"
@@ -27,7 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/chatRoomButton"
         android:layout_alignEnd="@+id/savedCocktailsButton"
-        android:layout_marginEnd="114dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="4dp"
         android:text="Learn about cocktails" />
 
     <Button
@@ -49,8 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/savedCocktailsButton"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="127dp"
-        android:layout_marginBottom="208dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginBottom="249dp"
         android:text="Look For Drinks" />
 
     <Button
@@ -59,8 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/searchStoresbutton"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="104dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="25dp"
         android:text=" Enter the Chat room" />
 
     <EditText
@@ -69,11 +58,27 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/savedCocktailsButton"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="95dp"
-        android:layout_marginBottom="47dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="84dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Alcoholic"
         android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="260dp"
+        android:layout_height="142dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="95dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="464dp"
+        android:text="Na Iwake"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="60dp"
+        android:textStyle="italic" />
 
 </RelativeLayout>
