@@ -26,8 +26,8 @@ import okhttp3.Response;
 
 
 public class CocktailsListActivity extends AppCompatActivity {
-    private SharedPreferences mSharedPreferences;
-    private String mRecentCocktails;
+    /*private SharedPreferences mSharedPreferences;
+    private String mRecentCocktails;*/
     private static final String TAG = CocktailsListActivity.class.getSimpleName();
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -46,11 +46,11 @@ public class CocktailsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cocktails);
         ButterKnife.bind(this);
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        /*mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mRecentCocktails = mSharedPreferences.getString(Constants.PREFERENCES_DRINK_KEY, null);
         if (mRecentCocktails != null ) {
             getCocktails(mRecentCocktails);
-        }
+        }*/
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("Cocktail");

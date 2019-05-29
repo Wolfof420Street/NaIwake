@@ -93,7 +93,7 @@ public class CocktailDetailFragment extends Fragment implements View.OnClickList
         if (v == mSaveCocktailButton) {
             DatabaseReference cocktailRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_COCKTAILD);
+                    .getReference(Constants.FIREBASE_CHILD_COCKTAILS);
             cocktailRef.push().setValue(mCocktail);
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }

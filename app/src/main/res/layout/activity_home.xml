@@ -1,33 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
+
     <ImageView
-        android:background="@drawable/background"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background" />
 
     <TextView
         android:id="@+id/hometextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Na Iwake" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="602dp"
+        android:text="Na Iwake"
+        android:textSize="69dp"
+        android:textColor="@color/common_google_signin_btn_text_light"/>
 
     <Button
         android:id="@+id/popularDrinksbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="54dp"
+        android:layout_above="@+id/chatRoomButton"
+        android:layout_alignEnd="@+id/savedCocktailsButton"
+        android:layout_marginEnd="114dp"
         android:text="Learn about cocktails" />
+
+    <Button
+        android:id="@+id/savedCocktailsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="7dp"
+        android:background="@color/colorAccent"
+        android:text="My Saved Cocktails"
+        android:textColor="@color/colorTextIcons"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"/>
 
     <Button
         android:id="@+id/searchStoresbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/popularDrinksbutton"
+        android:layout_alignEnd="@+id/savedCocktailsButton"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="217dp"
-        android:layout_marginBottom="55dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="208dp"
         android:text="Look For Drinks" />
 
     <Button
@@ -35,17 +58,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/searchStoresbutton"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="110dp"
-        android:layout_centerHorizontal="true"
-        android:text="Chatroom" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="28dp"
+        android:text=" Enter the Chat room" />
 
     <EditText
         android:id="@+id/editCocktailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/savedCocktailsButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="95dp"
+        android:layout_marginBottom="47dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Alcoholic"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
+
 </RelativeLayout>

@@ -108,6 +108,8 @@ public class ChatRoomActivity extends AppCompatActivity {
             }
         });
 
+
+
         // Enable Send button when there's text to send
         mMessageEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -140,6 +142,8 @@ public class ChatRoomActivity extends AppCompatActivity {
                 mMessageEditText.setText("");
             }
         });
+
+
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -208,9 +212,10 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             } else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK) {
                 Uri selectedImageUri = data.getData();
-                StorageReference photoref = mChatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
 
-                photoref.putFile(selectedImageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                StorageReference photoRef = mChatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
+
+                photoRef.putFile(selectedImageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Uri downloadUrl = taskSnapshot.getUploadSessionUri();
