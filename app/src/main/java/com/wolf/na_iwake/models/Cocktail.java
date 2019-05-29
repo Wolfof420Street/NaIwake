@@ -7,6 +7,7 @@ public class Cocktail {
     private String mDrink;
     private String mDrinkThumb;
     private String mWebsite;
+    private String pushId;
 
 
     public Cocktail () {}
@@ -23,6 +24,12 @@ public class Cocktail {
         return mDrinkThumb;
     }
     public String getWebsite () { return mWebsite;}
+    public String getPushId() {
+        return pushId;
+    }
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
     }
 
 

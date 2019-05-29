@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -91,10 +93,17 @@ public class CocktailDetailFragment extends Fragment implements View.OnClickList
             startActivity(webIntent);
         }
         if (v == mSaveCocktailButton) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
             DatabaseReference cocktailRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_COCKTAILS);
-            cocktailRef.push().setValue(mCocktail);
+                    .getReference(Constants.FIREBASE_CHILD_COCKTAILS)
+                    .child(uid);
+
+            DatabaseReference pushRef = cocktailRef.push();
+            String pushId = pushRef.getKey();
+            mCocktail.setPushId(pushId);
+            pushRef.setValue(mCocktail);
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
