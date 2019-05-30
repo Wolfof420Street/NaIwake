@@ -35,6 +35,7 @@ public class FirebaseCocktailViewHolder extends RecyclerView.ViewHolder implemen
     }
 
     public void bindCocktail(Cocktail cocktail) {
+
         ImageView cocktailImageView = (ImageView) mView.findViewById(R.id.cocktailImageView);
         TextView nameTextView = (TextView) mView.findViewById(R.id.cocktailNameTextView);
         TextView websiteTextView = (TextView) mView.findViewById(R.id.websiteTextView);
