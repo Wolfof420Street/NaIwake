@@ -1,5 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:id="@+id/cocktailsImageView"
+            android:src="@drawable/download"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:id="@+id/dragIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@id/cocktailsImageView"
+            android:layout_alignBottom="@id/cocktailsImageView"
+            android:gravity="bottom|left"
+            android:src="@drawable/baseline_reorder_black_18dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cocktailNameTextView"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Cocktail Name"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cocktail Details"
+            android:id="@+id/cocktailDetailNameTextView"
+            android:layout_below="@+id/cocktailNameTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textStyle="italic"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alcoholic"
+                android:id="@+id/categoryTextView"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorAccent"/>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
