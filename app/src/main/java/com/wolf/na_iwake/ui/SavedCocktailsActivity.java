@@ -40,7 +40,7 @@ public class SavedCocktailsActivity extends AppCompatActivity {
         setUpFirebaseAdapter();
     }
     private void setUpFirebaseAdapter(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+       FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
         mCocktailReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_COCKTAILS).child(uid);
@@ -60,7 +60,7 @@ public class SavedCocktailsActivity extends AppCompatActivity {
             @NonNull
             @Override
             public FirebaseCocktailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cocktail_list_item, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cocktail_list_item_drag, parent, false);
                 return new FirebaseCocktailViewHolder(view);
             }
         };

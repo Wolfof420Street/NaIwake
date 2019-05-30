@@ -4,10 +4,10 @@ import org.parceler.Parcel;
 
 @Parcel
 public class Cocktail {
-    private String mDrink;
-    private String mDrinkThumb;
-    private String mWebsite;
-    private String pushId;
+   String mDrink;
+   String mDrinkThumb;
+   String mWebsite;
+   String pushId;
 
 
     public Cocktail () {}
