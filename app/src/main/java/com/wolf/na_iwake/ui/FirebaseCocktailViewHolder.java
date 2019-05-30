@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class FirebaseCocktailViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     View mView;
     Context mContext;
+    public ImageView mCocktailImageView;
 
     public FirebaseCocktailViewHolder(View itemView) {
         super(itemView);
@@ -35,12 +36,12 @@ public class FirebaseCocktailViewHolder extends RecyclerView.ViewHolder implemen
     }
 
     public void bindCocktail(Cocktail cocktail) {
-
-        ImageView cocktailImageView = (ImageView) mView.findViewById(R.id.cocktailsImageView);
+        mCocktailImageView = (ImageView) mView.findViewById(R.id.cocktailsImageView);
+       /* ImageView cocktailImageView = (ImageView) mView.findViewById(R.id.cocktailsImageView);*/
         TextView nameTextView = (TextView) mView.findViewById(R.id.cocktailNameTextView);
     /*    TextView websiteTextView = (TextView) mView.findViewById(R.id.websiteTextView);*/
 
-        Picasso.get().load(cocktail.getDrinkThumb()).into(cocktailImageView);
+        Picasso.get().load(cocktail.getDrinkThumb()).into(mCocktailImageView);
 
         nameTextView.setText(cocktail.getDrink());
         /*websiteTextView.setText(cocktail.getWebsite());*/

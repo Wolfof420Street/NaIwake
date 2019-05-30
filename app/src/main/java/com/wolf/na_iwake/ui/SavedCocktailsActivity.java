@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +18,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.wolf.na_iwake.Constants;
 import com.wolf.na_iwake.R;
+import com.wolf.na_iwake.adapters.FirebaseCocktailListAdapter;
 import com.wolf.na_iwake.models.Cocktail;
+import com.wolf.na_iwake.util.OnStartDragListener;
+import com.wolf.na_iwake.util.SimpleItemTouchHelperCallback;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SavedCocktailsActivity extends AppCompatActivity {
+public class SavedCocktailsActivity extends AppCompatActivity implements OnStartDragListener {
     private DatabaseReference mCocktailReference;
-    private FirebaseRecyclerAdapter<Cocktail, FirebaseCocktailViewHolder> mFirebaseAdapter;
+    private FirebaseCocktailListAdapter mFirebaseAdapter;
+    private ItemTouchHelper mItemTouchHelper;
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -51,8 +56,8 @@ public class SavedCocktailsActivity extends AppCompatActivity {
 
 
 
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Cocktail, FirebaseCocktailViewHolder>(options) {
-            @Override
+        mFirebaseAdapter = new FirebaseCocktailListAdapter(options, mCocktailReference, this, this);
+           /* @Override
             protected void onBindViewHolder(@NonNull FirebaseCocktailViewHolder firebaseCocktailViewHolder, int position, @NonNull Cocktail cocktail) {
             firebaseCocktailViewHolder.bindCocktail(cocktail);
             }
@@ -63,10 +68,13 @@ public class SavedCocktailsActivity extends AppCompatActivity {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cocktail_list_item_drag, parent, false);
                 return new FirebaseCocktailViewHolder(view);
             }
-        };
+        };*/
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mFirebaseAdapter);
         mRecyclerView.setHasFixedSize(true);
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
     @Override
     protected void onStart() {
@@ -80,5 +88,8 @@ public class SavedCocktailsActivity extends AppCompatActivity {
         if(mFirebaseAdapter!= null) {
             mFirebaseAdapter.stopListening();
         }
+    }
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder){
+        mItemTouchHelper.startDrag(viewHolder);
     }
 }
