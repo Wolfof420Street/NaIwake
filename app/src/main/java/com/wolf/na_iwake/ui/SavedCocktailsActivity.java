@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.wolf.na_iwake.Constants;
 import com.wolf.na_iwake.R;
 import com.wolf.na_iwake.adapters.FirebaseCocktailListAdapter;
@@ -47,6 +48,12 @@ public class SavedCocktailsActivity extends AppCompatActivity implements OnStart
     private void setUpFirebaseAdapter(){
        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
+
+
+        Query query = FirebaseDatabase.getInstance()
+                .getReference(Constants.FIREBASE_CHILD_COCKTAILS)
+                .child(uid)
+                .orderByChild(Constants.FIREBASE_QUERY_INDEX);
 
         mCocktailReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_COCKTAILS).child(uid);
         FirebaseRecyclerOptions<Cocktail> options =
@@ -89,7 +96,12 @@ public class SavedCocktailsActivity extends AppCompatActivity implements OnStart
             mFirebaseAdapter.stopListening();
         }
     }
+
     public void onStartDrag(RecyclerView.ViewHolder viewHolder){
         mItemTouchHelper.startDrag(viewHolder);
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mFirebaseAdapter.stopListening(); }
 }

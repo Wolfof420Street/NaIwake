@@ -3,6 +3,7 @@ package com.wolf.na_iwake.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,12 +19,18 @@ import com.squareup.picasso.Picasso;
 import com.wolf.na_iwake.Constants;
 import com.wolf.na_iwake.R;
 import com.wolf.na_iwake.models.Cocktail;
+import com.wolf.na_iwake.util.ItemTouchHelperViewHolder;
 
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
-public class FirebaseCocktailViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FirebaseCocktailViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
+
+    private static final int MAX_WIDTH = 200;
+    private static final int MAX_HEIGHT = 200;
+
+
     View mView;
     Context mContext;
     public ImageView mCocktailImageView;
@@ -32,7 +39,7 @@ public class FirebaseCocktailViewHolder extends RecyclerView.ViewHolder implemen
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
+
     }
 
     public void bindCocktail(Cocktail cocktail) {
@@ -47,8 +54,26 @@ public class FirebaseCocktailViewHolder extends RecyclerView.ViewHolder implemen
         /*websiteTextView.setText(cocktail.getWebsite());*/
 
     }
+    @Override
+    public void onItemSelected() {
+        itemView.animate()
+                .alpha(0.7f)
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(500);
+    }
 
     @Override
+    public void onItemClear() {
+        itemView.animate()
+                .alpha(1f)
+                .scaleX(1f)
+                .scaleY(1f);
+    }
+
+
+
+
     public void onClick(View view) {
         final ArrayList<Cocktail> cocktails = new ArrayList<>();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -75,6 +100,8 @@ public class FirebaseCocktailViewHolder extends RecyclerView.ViewHolder implemen
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+
     }
 }
 

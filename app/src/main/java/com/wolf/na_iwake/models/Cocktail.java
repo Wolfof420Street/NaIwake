@@ -8,6 +8,7 @@ public class Cocktail {
    String mDrinkThumb;
    String mWebsite;
    String pushId;
+    String index;
 
 
     public Cocktail () {}
@@ -15,6 +16,7 @@ public class Cocktail {
     public Cocktail (String strDrink, String strDrinkThumb) {
         this.mDrink = strDrink;
         this.mDrinkThumb = strDrinkThumb;
+        this.index = "not_specified";
 
     }
     public String getDrink () {
@@ -29,6 +31,13 @@ public class Cocktail {
     }
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
     }
 

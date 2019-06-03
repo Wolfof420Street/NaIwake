@@ -33,6 +33,7 @@ public class CocktailDetailActivity extends AppCompatActivity {
         adapterViewPager = new CocktailPagerAdapter(getSupportFragmentManager(), mCocktails);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
+        
     }
 
 }
