@@ -18,7 +18,7 @@ public class CocktailPagerAdapter extends FragmentPagerAdapter {
     }
     @Override
     public Fragment getItem(int position) {
-        return CocktailDetailFragment.newInstance(mCocktails.get(position));
+        return CocktailDetailFragment.newInstance(mCocktails, position);
     }
     @Override
     public int getCount () {
@@ -28,4 +28,5 @@ public class CocktailPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return mCocktails.get(position).getDrink();
     }
+
 }

@@ -25,6 +25,8 @@ import com.wolf.na_iwake.models.Cocktail;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -49,11 +51,15 @@ public class CocktailDetailFragment extends Fragment implements View.OnClickList
     Button mSaveCocktailButton;
 
     private Cocktail mCocktail;
+    private ArrayList<Cocktail> mCocktailss;
+    private int mPosition;
 
-    public static CocktailDetailFragment newInstance(Cocktail cocktail) {
+    public static CocktailDetailFragment newInstance(ArrayList<Cocktail> cocktails, Integer position) {
         CocktailDetailFragment cocktailDetailFragment = new CocktailDetailFragment();
         Bundle args = new Bundle();
-        args.putParcelable("cocktail", Parcels.wrap(cocktail));
+
+        args.putParcelable(Constants.EXTRA_KEY_COCKTAILS, Parcels.wrap(cocktails));
+        args.putInt(Constants.EXTRA_KEY_POSITION, position);
         cocktailDetailFragment.setArguments(args);
         return cocktailDetailFragment;
     }
@@ -61,7 +67,10 @@ public class CocktailDetailFragment extends Fragment implements View.OnClickList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      mCocktail = Parcels.unwrap(getArguments().getParcelable("cocktail"));
+      mCocktail = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_COCKTAILS));
+      mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
+      mCocktail= mCocktailss.get(mPosition);
+
     }
 
     @Override

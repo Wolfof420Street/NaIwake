@@ -7,4 +7,6 @@ public class Constants {
     public static final String PREFERENCES_DRINK_KEY = "name";
     public static final String FIREBASE_CHILD_COCKTAILS = "cocktails";
     public static final String FIREBASE_QUERY_INDEX = "index";
+    public static final String EXTRA_KEY_POSITION = "position";
+    public static final String EXTRA_KEY_COCKTAILS = "cocktails";
 }
