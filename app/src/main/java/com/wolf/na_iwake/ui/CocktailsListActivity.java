@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.wolf.na_iwake.R;
 
-public class CocktailListActivity extends AppCompatActivity {
+public class CocktailsListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

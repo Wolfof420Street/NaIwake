@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CocktailListActivity">
+    tools:context=".ui.CocktailsListActivity">
 
     <fragment
-        android:id="@+id/fragmentRestaurantList"
+        android:id="@+id/fragmentCocktailList"
         android:name="com.wolf.na_iwake.ui.CocktailDetailFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

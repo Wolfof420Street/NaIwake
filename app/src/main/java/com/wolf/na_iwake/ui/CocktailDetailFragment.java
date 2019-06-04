@@ -61,7 +61,7 @@ public class CocktailDetailFragment extends Fragment implements View.OnClickList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mCocktail = Parcels.unwrap(getArguments().getParcelable("cocktail"));
+      mCocktail = Parcels.unwrap(getArguments().getParcelable("cocktail"));
     }
 
     @Override
