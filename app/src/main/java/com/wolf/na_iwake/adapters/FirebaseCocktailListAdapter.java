@@ -19,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
+import com.wolf.na_iwake.Constants;
 import com.wolf.na_iwake.R;
 import com.wolf.na_iwake.models.Cocktail;
 import com.wolf.na_iwake.ui.CocktailDetailActivity;
@@ -143,7 +144,7 @@ public class FirebaseCocktailListAdapter extends FirebaseRecyclerAdapter <Cockta
     }
     private void createDetailFragment(int position) {
         // Creates new RestaurantDetailFragment with the given position:
-        CocktailDetailFragment detailFragment = CocktailDetailFragment.newInstance(mCocktails, position);
+        CocktailDetailFragment detailFragment = CocktailDetailFragment.newInstance(mCocktails, position, Constants.SOURCE_SAVED);
         // Gathers necessary components to replace the FrameLayout in the layout with the RestaurantDetailFragment:
         FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
         //  Replaces the FrameLayout with the RestaurantDetailFragment:
