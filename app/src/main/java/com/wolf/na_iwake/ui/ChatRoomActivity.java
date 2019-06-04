@@ -76,6 +76,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     private FirebaseStorage mFirebaseStorage;
     private StorageReference mChatPhotosStorageReference;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -2,7 +2,10 @@ package com.wolf.na_iwake.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,6 +26,7 @@ import com.wolf.na_iwake.util.ItemTouchHelperViewHolder;
 
 import org.parceler.Parcels;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class FirebaseCocktailViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
@@ -44,15 +48,23 @@ public class FirebaseCocktailViewHolder extends RecyclerView.ViewHolder implemen
 
     public void bindCocktail(Cocktail cocktail) {
         mCocktailImageView = (ImageView) mView.findViewById(R.id.cocktailsImageView);
-       /* ImageView cocktailImageView = (ImageView) mView.findViewById(R.id.cocktailsImageView);*/
+        /* ImageView cocktailImageView = (ImageView) mView.findViewById(R.id.cocktailsImageView);*/
         TextView nameTextView = (TextView) mView.findViewById(R.id.cocktailNameTextView);
-    /*    TextView websiteTextView = (TextView) mView.findViewById(R.id.websiteTextView);*/
+        /*    TextView websiteTextView = (TextView) mView.findViewById(R.id.websiteTextView);*/
+        if (!cocktail.getDrinkThumb().contains("http")) {
+            try {
+                Bitmap imageBitmap = decodeFromFirebaseBase64(cocktail.getDrinkThumb());
+                mCocktailImageView.setImageBitmap(imageBitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Picasso.get().load(cocktail.getDrinkThumb()).into(mCocktailImageView);
 
-        Picasso.get().load(cocktail.getDrinkThumb()).into(mCocktailImageView);
+            nameTextView.setText(cocktail.getDrink());
+            /*websiteTextView.setText(cocktail.getWebsite());*/
 
-        nameTextView.setText(cocktail.getDrink());
-        /*websiteTextView.setText(cocktail.getWebsite());*/
-
+        }
     }
     @Override
     public void onItemSelected() {
@@ -102,6 +114,10 @@ public class FirebaseCocktailViewHolder extends RecyclerView.ViewHolder implemen
         });
 
 
+    }
+    public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
+        byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
     }
 }
 

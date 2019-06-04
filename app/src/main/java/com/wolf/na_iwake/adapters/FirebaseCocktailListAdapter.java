@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +18,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.wolf.na_iwake.R;
 import com.wolf.na_iwake.models.Cocktail;
 import com.wolf.na_iwake.ui.CocktailDetailActivity;
@@ -40,9 +40,9 @@ public class FirebaseCocktailListAdapter extends FirebaseRecyclerAdapter <Cockta
     private ArrayList<Cocktail> mCocktails = new ArrayList<>();
     private int mOrientation;
 
-    public FirebaseCocktailListAdapter(FirebaseRecyclerOptions<Cocktail> options, DatabaseReference ref, OnStartDragListener onStartDragListener, Context context) {
+    public FirebaseCocktailListAdapter(FirebaseRecyclerOptions<Cocktail> options, Query query, OnStartDragListener onStartDragListener, Context context) {
         super(options);
-        mRef = ref.getRef();
+        mRef = query.getRef();
         mOnStartDragListener = onStartDragListener;
         mContext = context;
 
@@ -138,8 +138,7 @@ public class FirebaseCocktailListAdapter extends FirebaseRecyclerAdapter <Cockta
         for (Cocktail cocktail : mCocktails) {
             int index = mCocktails.indexOf(cocktail);
             DatabaseReference ref = getRef(index);
-            cocktail.setIndex(Integer.toString(index));
-            ref.setValue(cocktail);
+            ref.child("index").setValue(Integer.toString(index));
         }
     }
     private void createDetailFragment(int position) {

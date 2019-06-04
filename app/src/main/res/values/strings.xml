@@ -2,5 +2,8 @@
     <string name="app_name">Na Iwake</string>
     <string name="sign_out">Sign Out</string>
     <string name="send_button_label">Send</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
 
